@@ -1,5 +1,7 @@
-## [1.0.3] - 20 June 2020.
+## [1.0.4] - 20 June 2020.
+- merged examples in main.dart
 
+## [1.0.3] - 20 June 2020.
 - moved todo example in separate file
 
 ## [1.0.2] - 20 June 2020.
@@ -12,9 +14,7 @@
 - updated tests for above changes
 
 ## [1.0.1] - 20 June 2020.
-
 - Added intention in readme.
 
 ## [1.0.0] - 20 June 2020.
-
 - Initial Release.
