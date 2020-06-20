@@ -38,7 +38,7 @@ Note, tag can be changed from any place in the app because it does not need cont
 
 ```dart
 someFunction() {
-  AppTagService.instance.update('COVID-19');
+  AppTagService.instance.update(element: 'COVID-19');
 }
 ```
 

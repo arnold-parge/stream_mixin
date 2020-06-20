@@ -20,7 +20,7 @@ class CurrentTag extends StatelessWidget {
 }
 
 someFunction() {
-  AppTagService.instance.update('COVID-19');
+  AppTagService.instance.update(element: 'COVID-19');
 }
 
 // Example 2
@@ -33,7 +33,9 @@ class TodoModel extends BasicModel {
     int id,
     @required this.title,
     this.completed: false,
-  }) : super(id: id ?? DateTime.now().millisecondsSinceEpoch);
+  }) {
+    this.id = id ?? DateTime.now().millisecondsSinceEpoch;
+  }
 }
 
 class TodoService extends StoreService<TodoModel> {
@@ -57,7 +59,7 @@ class TodoService extends StoreService<TodoModel> {
   void toggleStatus(TodoModel todo) {
     todo.completed = !todo.completed;
     TodoService.store.update(
-      AppStreamElement(item: todo, operation: Operation.Update),
+      element: AppStreamElement(item: todo, operation: Operation.Update),
     );
   }
 }

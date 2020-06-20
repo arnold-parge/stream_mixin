@@ -35,8 +35,12 @@ abstract class StoreService<T extends BasicModel>
     return _store.containsKey(id);
   }
 
+  void updateAll(T Function(int, T) update) {
+    _store.updateAll(update);
+  }
+
   @override
-  void update(AppStreamElement<T> element) {
+  void update({AppStreamElement<T> element}) {
     if (element != null) {
       switch (element.operation) {
         case Operation.Add:
@@ -50,6 +54,6 @@ abstract class StoreService<T extends BasicModel>
           break;
       }
     }
-    super.update(element);
+    super.update(element: element);
   }
 }

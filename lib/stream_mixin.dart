@@ -31,7 +31,7 @@ import 'dart:async';
 /// Note, tag can be changed from any place in the app because it does not need context or state.
 /// ```dart
 /// someFunction() {
-///   AppTagService.instance.update('COVID-19');
+///   AppTagService.instance.update(element: 'COVID-19');
 /// }
 /// ```
 mixin StreamMixin<T> {
@@ -41,7 +41,7 @@ mixin StreamMixin<T> {
     return _controller.stream.asBroadcastStream();
   }
 
-  void update(T item) {
-    _controller.add(item);
+  void update({T element}) {
+    _controller.add(element);
   }
 }
