@@ -7,9 +7,9 @@ class AppTagService with StreamMixin<String> {
   static final AppTagService instance = AppTagService._();
 
   @override
-  void change(String item) {
+  void update(String item) {
     print('changed to: $item');
-    super.change(item);
+    super.update(item);
   }
 }
 
@@ -22,6 +22,6 @@ void main() {
       emitsInOrder(stringsToEmit),
     );
 
-    stringsToEmit.forEach((str) => AppTagService.instance.change(str));
+    stringsToEmit.forEach((str) => AppTagService.instance.update(str));
   });
 }

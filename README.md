@@ -38,6 +38,13 @@ Note, tag can be changed from any place in the app because it does not need cont
 
 ```dart
 someFunction() {
-  AppTagService.instance.change('COVID-19');
+  AppTagService.instance.update('COVID-19');
 }
 ```
+
+## Check example folder for more examples
+
+### PS 
+- PRs are welcome
+- Please raise issues on https://github.com/arnold-parge/screen_loader.
+- Open for suggestions ❤️

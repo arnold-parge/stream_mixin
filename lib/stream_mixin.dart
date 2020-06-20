@@ -2,7 +2,7 @@ library stream_mixin;
 
 import 'dart:async';
 
-/// To make a class subscribable use the class with [StreamMixin]
+/// To subscribe a class instance, create the class with [StreamMixin]
 ///
 /// eg:
 ///
@@ -31,7 +31,7 @@ import 'dart:async';
 /// Note, tag can be changed from any place in the app because it does not need context or state.
 /// ```dart
 /// someFunction() {
-///   AppTagService.instance.change('COVID-19');
+///   AppTagService.instance.update('COVID-19');
 /// }
 /// ```
 mixin StreamMixin<T> {
@@ -41,7 +41,7 @@ mixin StreamMixin<T> {
     return _controller.stream.asBroadcastStream();
   }
 
-  void change(T item) {
+  void update(T item) {
     _controller.add(item);
   }
 }
