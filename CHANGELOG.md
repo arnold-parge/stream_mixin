@@ -1,3 +1,7 @@
+## [1.0.3] - 20 June 2020.
+
+- moved todo example in separate file
+
 ## [1.0.2] - 20 June 2020.
 ### Bux fixes:
 - null id in example todo model
