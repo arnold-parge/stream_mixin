@@ -20,7 +20,7 @@ import 'dart:async';
 ///   @override
 ///   Widget build(BuildContext context) {
 ///     return StreamBuilder<String>(
-///       builder: (context, snap) => Text(snap.data),
+///       builder: (context, snap) => Text(snap.data ?? 'No tag selected yet.'),
 ///       stream: AppTagService.instance.onChange,
 ///     );
 ///   }
