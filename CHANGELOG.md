@@ -1,7 +1,16 @@
+## [1.0.2] - 20 June 2020.
+### Bux fixes:
+- null id in example todo model
+- fixed add method in StoreService
+- added updateAll in StoreService
+- changed item in StreamMixin to element
+- made element in StreamMixin optional
+- updated tests for above changes
+
 ## [1.0.1] - 20 June 2020.
 
-* Added intention in readme.
+- Added intention in readme.
 
 ## [1.0.0] - 20 June 2020.
 
-* Initial Release.
+- Initial Release.
