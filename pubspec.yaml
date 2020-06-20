@@ -1,0 +1,17 @@
+name: stream_mixin
+description: A simple mixin for adding a stream behaviour to any class object
+version: 1.0.0
+homepage: https://github.com/arnold-parge/stream_mixin
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
