@@ -1,6 +1,6 @@
 name: stream_mixin
 description: A simple mixin for adding a stream behaviour to any class object
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/arnold-parge/stream_mixin
 
 environment:

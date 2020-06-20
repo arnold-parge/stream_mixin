@@ -1,11 +1,15 @@
 # stream_mixin
 
-A simple mixin for adding a stream behaviour to any class object
+A simple mixin for adding a stream behaviour to any class object.
+
+## Intention
+
+The intention for this package is, instead of using state, we can use this package for streaming data from our controller/adapter/service to the widgets, which will result in better performance and cleaner code.
 
 ## Getting Started
-To make a class subscribable create the class with [StreamMixin]
+To subscribe a class instance, create the class with `StreamMixin`
 
-### Create a service
+### Create a service class
 
 ```dart
 class AppTagService with StreamMixin<String> {
