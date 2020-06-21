@@ -1,3 +1,6 @@
+## [1.0.6] - 21 June 2020.
+- added descriptive comments for classes, fields and methods 
+
 ## [1.0.5] - 21 June 2020.
 - updated issue link in readme
 

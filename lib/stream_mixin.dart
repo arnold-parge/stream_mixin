@@ -37,10 +37,12 @@ import 'dart:async';
 mixin StreamMixin<T> {
   StreamController<T> _controller = StreamController<T>.broadcast();
 
+  /// Returns a [Stream] of [T]
   Stream<T> get onChange {
     return _controller.stream.asBroadcastStream();
   }
-
+  
+  /// Pushes data in the [Stream]
   void update({T element}) {
     _controller.add(element);
   }
