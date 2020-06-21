@@ -1,3 +1,6 @@
+## [1.0.5] - 21 June 2020.
+- updated issue link in readme
+
 ## [1.0.4] - 20 June 2020.
 - merged examples in main.dart
 

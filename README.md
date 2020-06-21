@@ -46,5 +46,5 @@ someFunction() {
 
 ### PS 
 - PRs are welcome
-- Please raise issues on https://github.com/arnold-parge/screen_loader.
+- Please raise issues on https://github.com/arnold-parge/stream_mixin/issues.
 - Open for suggestions ❤️
