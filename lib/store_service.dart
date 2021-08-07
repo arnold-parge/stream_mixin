@@ -56,7 +56,9 @@ abstract class StoreService<T extends BasicModel>
   /// Updates all records in the store
   void updateAll(T Function(int, T) update) {
     _store.updateAll(update);
-    super.update(element: null);
+
+    // Find a better way to force emit event without element
+    // super.update(element: null);
   }
 
   /// Updates a single record in the store
