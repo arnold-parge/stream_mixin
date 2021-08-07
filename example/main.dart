@@ -30,10 +30,10 @@ class TodoModel extends BasicModel {
   bool completed;
 
   TodoModel({
-    int id,
-    @required this.title,
+    int? id,
+    required this.title,
     this.completed: false,
-  }) {
+  }) : super(id: id ?? 0) {
     this.id = id ?? DateTime.now().millisecondsSinceEpoch;
   }
 }
@@ -87,7 +87,7 @@ class TodoListWidget extends StatelessWidget {
       ),
       trailing: Checkbox(
         value: todo.completed,
-        onChanged: (bool _) {
+        onChanged: (bool? _) {
           TodoService.store.toggleStatus(todo);
         },
       ),

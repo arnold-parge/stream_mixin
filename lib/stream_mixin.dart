@@ -35,15 +35,17 @@ import 'dart:async';
 /// }
 /// ```
 mixin StreamMixin<T> {
+  T? lastUpdate;
   StreamController<T> _controller = StreamController<T>.broadcast();
 
   /// Returns a [Stream] of [T]
   Stream<T> get onChange {
     return _controller.stream.asBroadcastStream();
   }
-  
+
   /// Pushes data in the [Stream]
-  void update({T element}) {
+  void update({required T element}) {
+    this.lastUpdate = element;
     _controller.add(element);
   }
 }

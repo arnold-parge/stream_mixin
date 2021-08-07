@@ -2,6 +2,8 @@
 
 A simple mixin for adding a stream behaviour to any class object.
 
+## Breaking change in 2.0.0
+Migrated to null safety
 ## Intention
 
 The intention for this package is, instead of using state, we can use this package for streaming data from our controller/adapter/service to the widgets, which will result in better performance and cleaner code.

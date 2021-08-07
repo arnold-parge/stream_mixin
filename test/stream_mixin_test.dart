@@ -5,12 +5,6 @@ import 'package:stream_mixin/stream_mixin.dart';
 class AppTagService with StreamMixin<String> {
   AppTagService._();
   static final AppTagService instance = AppTagService._();
-
-  @override
-  void update({String element}) {
-    print('changed to: $element');
-    super.update(element: element);
-  }
 }
 
 void main() {

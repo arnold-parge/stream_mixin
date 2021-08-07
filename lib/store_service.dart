@@ -1,5 +1,4 @@
 import 'package:stream_mixin/stream_mixin.dart';
-import 'package:meta/meta.dart';
 
 /// Can be used to specify the type of operation you want to perform on the data in the store
 enum Operation {
@@ -18,13 +17,13 @@ class AppStreamElement<T> {
   final T item;
   final Operation operation;
 
-  AppStreamElement({@required this.item, @required this.operation});
+  AppStreamElement({required this.item, required this.operation});
 }
 
 /// A model that should be extended by models that will use in [StoreService]
 abstract class BasicModel {
   int id;
-  BasicModel({int id});
+  BasicModel({required this.id});
 }
 
 /// [StoreService] will let you create a service which will handle most of the operations on the model out of the box,
@@ -61,22 +60,20 @@ abstract class StoreService<T extends BasicModel>
   }
 
   /// Updates a single record in the store
-  /// 
+  ///
   /// The data is handdled as per the [AppStreamElement] passed
   @override
-  void update({AppStreamElement<T> element}) {
-    if (element != null) {
-      switch (element.operation) {
-        case Operation.Add:
-        case Operation.Update:
-          _add(element.item);
-          break;
-        case Operation.Delete:
-          _delete(element.item);
-          break;
-        default:
-          break;
-      }
+  void update({required AppStreamElement<T> element}) {
+    switch (element.operation) {
+      case Operation.Add:
+      case Operation.Update:
+        _add(element.item);
+        break;
+      case Operation.Delete:
+        _delete(element.item);
+        break;
+      default:
+        break;
     }
     super.update(element: element);
   }
