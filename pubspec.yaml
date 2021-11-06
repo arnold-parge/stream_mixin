@@ -1,6 +1,6 @@
 name: stream_mixin
-description: A simple mixin for adding a stream behaviour to any class object
-version: 2.0.0
+description: Data management using stream to avoid use of State/setState/StatefulWidget, boosting the performance and code separation.
+version: 3.0.0
 homepage: https://github.com/arnold-parge/stream_mixin
 
 environment:

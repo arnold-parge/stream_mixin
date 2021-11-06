@@ -1,3 +1,14 @@
+## [3.0.0] - 6 Nov 2021 (BREAKING CHANGES)
+- Simplified the functions of StoreService
+- Added more functions to StoreService
+    - add
+    - update
+    - delete
+    - deleteItemById
+- Renamed BasicModel -> BaseModel for better understanding
+- Changed type of TodoModel's id from int to string as the id could be string and int can be converted to string but not the other way around
+- Added unit tests for StreamMixin and StoreService(add, update and delete item)
+
 ## [2.0.0] - 8 Aug 2021.
 - Added null safty
 - Added `lastUpdate` in StreamMixin to know the last update value
