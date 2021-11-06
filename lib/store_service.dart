@@ -3,13 +3,13 @@ import 'dart:async';
 /// Can be used to specify the type of operation you want to perform on the data in the store
 enum Operation {
   /// Should be used when adding some data in the store
-  Add,
+  add,
 
   /// Should be used when updating some data in the store
-  Update,
+  update,
 
   /// Should be used when deleting some data in the store
-  Delete,
+  delete,
 }
 
 /// Tells [StoreService] what [Operation] to perform and on which [item] to perform the operation
@@ -30,7 +30,7 @@ abstract class BaseModel {
 /// operations on the model out of the box,
 /// like [idExist], [onChange], [update], [updateAll], [values]
 abstract class StoreService<T extends BaseModel> {
-  StreamController<StreamElement<T>> _controller =
+  final StreamController<StreamElement<T>> _controller =
       StreamController<StreamElement<T>>.broadcast();
 
   /// Returns a [Stream] of [StreamElement] of [T]
@@ -44,7 +44,7 @@ abstract class StoreService<T extends BaseModel> {
   }
 
   /// The main in-memory store which will store your model extended by [BaseModel]
-  Map<String, T> _inMemoryStore = {};
+  final Map<String, T> _inMemoryStore = {};
 
   /// Adds an item in the store
   void _add(T item) {
@@ -71,9 +71,9 @@ abstract class StoreService<T extends BaseModel> {
   T? getById(String id) {
     return _inMemoryStore[id];
   }
-  
-  // TODO: Find a better way to force emit event without element in updateAll.
-  // Hence, commenting updateAll 
+
+  // Find a better way to force emit event without element in updateAll.
+  // Hence, commenting updateAll
 
   /// Updates all records in the store
   // void updateAll(T Function(String, T) update) {
@@ -84,19 +84,19 @@ abstract class StoreService<T extends BaseModel> {
   /// Adds an [item] to the store.
   void add(T item) {
     _add(item);
-    _update(StreamElement(item: item, operation: Operation.Add));
+    _update(StreamElement(item: item, operation: Operation.add));
   }
 
   /// Updates an [item] in the store.
   void update(T item) {
     _add(item);
-    _update(StreamElement(item: item, operation: Operation.Update));
+    _update(StreamElement(item: item, operation: Operation.update));
   }
 
   /// Deletes an [item] from the store.
   void delete(T item) {
     _delete(item);
-    _update(StreamElement(item: item, operation: Operation.Delete));
+    _update(StreamElement(item: item, operation: Operation.delete));
   }
 
   /// Deletes an [item] from the store by the given id.
@@ -104,7 +104,7 @@ abstract class StoreService<T extends BaseModel> {
     var item = getById(id);
     if (item != null) {
       _delete(item);
-      _update(StreamElement(item: item, operation: Operation.Delete));
+      _update(StreamElement(item: item, operation: Operation.delete));
     }
   }
 }

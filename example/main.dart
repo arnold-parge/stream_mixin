@@ -38,7 +38,7 @@ class TodoModel extends BaseModel {
   TodoModel({
     required String id,
     required this.title,
-    this.completed: false,
+    this.completed = false,
   }) : super(id: id);
 }
 
@@ -47,11 +47,11 @@ class TodoService extends StoreService<TodoModel> {
   static TodoService store = TodoService._();
 
   List<TodoModel> get completed {
-    return this.values.where((todo) => todo.completed).toList();
+    return values.where((todo) => todo.completed).toList();
   }
 
   List<TodoModel> get pending {
-    return this.values.where((todo) => !todo.completed).toList();
+    return values.where((todo) => !todo.completed).toList();
   }
 
   void toggleStatus(TodoModel todo) {
@@ -61,6 +61,8 @@ class TodoService extends StoreService<TodoModel> {
 }
 
 class TodoListWidget extends StatelessWidget {
+  const TodoListWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(

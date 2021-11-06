@@ -25,7 +25,9 @@ void main() {
       emitsInOrder(stringsToEmit),
     );
 
-    stringsToEmit.forEach((str) => nameService.update(str));
+    for (var str in stringsToEmit) {
+      nameService.update(str);
+    }
   });
 
   test('List of models', () async {
@@ -40,17 +42,14 @@ void main() {
     int addCount = 0;
 
     store.onChange.listen((StreamElement<ProductModel> productStream) {
-      if (productStream.operation == Operation.Add) {
+      if (productStream.operation == Operation.add) {
         expect(productStream.item, products[addCount]);
-        print('Product ${productStream.item.name} added successfully!');
         addCount++;
-      } else if (productStream.operation == Operation.Update) {
+      } else if (productStream.operation == Operation.update) {
         expect(productStream.item, products[1]);
-        print('Product ${productStream.item.name} updated successfully!');
-      } else if (productStream.operation == Operation.Delete) {
+      } else if (productStream.operation == Operation.delete) {
         expect(productStream.item, products[2]);
         expect(store.values.length, 3);
-        print('Product ${productStream.item.name} deleted successfully!');
       }
     });
 
@@ -58,17 +57,17 @@ void main() {
     products.forEach(store.add);
 
     // Updating a product from the store
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     var bag = products[1];
     bag.name = 'Hand Bag';
     store.update(bag);
 
     // Updating a product from the store
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     var shirt = products[2];
     store.delete(shirt);
 
     // Waiting for the events to end
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
   });
 }
