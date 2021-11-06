@@ -2,10 +2,8 @@
 
 Data management using stream to avoid use of State/setState/StatefulWidget, boosting the performance and code separation.
 
----
-## Breaking change in 2.0.0 and 3.0.0. Check the [changelog](/changelog).
+## Breaking change in 2.0.0 and 3.0.0. Check the changelog.
 
----
 ## The Intention
 
 The intention for this package is, instead of using state, use this package for streaming data from the controller/adapter/service to the widgets, which results in better performance and cleaner code.
@@ -37,8 +35,6 @@ Widget someWidget() {
   );
 }
 ```
-
-## [Check all examples](/example)
 
 ## Contribute ❤️
 There are couple of ways in which you can contribute.
