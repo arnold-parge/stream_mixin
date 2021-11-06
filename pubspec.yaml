@@ -1,6 +1,6 @@
 name: stream_mixin
 description: Data management using stream to avoid use of State/setState/StatefulWidget, boosting the performance and code separation.
-version: 3.0.0
+version: 3.0.1
 homepage: https://github.com/arnold-parge/stream_mixin
 
 environment:

@@ -1,3 +1,6 @@
+## [3.0.1] - 8 Aug 2021.
+- Updated README
+
 ## [3.0.0] - 6 Nov 2021 (BREAKING CHANGES)
 - Simplified the functions of StoreService
 - Added more functions to StoreService
