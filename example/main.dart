@@ -4,27 +4,27 @@ import 'package:stream_mixin/stream_mixin.dart';
 
 // Example 1
 
-class CountService with StreamMixin<int> {
+class Counter with StreamMixin<int> {
   increment() {
-    update(lastUpdate ?? 0 + 1);
+    update((lastUpdate ?? 0) + 1);
   }
 }
 
-/// You can either create a global instance of CountService or create a
-/// singleton like class by adding the following in CountService class
+/// You can either create a global instance of Counter or create a
+/// singleton (recommented) like class by adding the following in Counter class
 /// ```dart
-///   CountService._();
-///   static CountService instance = CountService._();
+///   Counter._();
+///   static Counter instance = Counter._();
 /// ```
-final countService = CountService();
+final counter = Counter();
 
 anywhereInTheApp() {
-  countService.increment();
+  counter.increment();
 }
 
 Widget someWidget() {
   return StreamBuilder<int>(
-    stream: countService.onChange,
+    stream: counter.onChange,
     builder: (cxt, snap) => Text((snap.data ?? 0).toString()),
   );
 }

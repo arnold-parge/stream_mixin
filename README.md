@@ -1,5 +1,4 @@
 # stream_mixin
-
 Data management using stream to avoid use of State/setState/StatefulWidget, boosting the performance and code separation.
 
 ## Breaking change in 2.0.0 and 3.0.0. Check the changelog.
@@ -9,28 +8,31 @@ Data management using stream to avoid use of State/setState/StatefulWidget, boos
 The intention for this package is, instead of using state, use this package for streaming data from the controller/adapter/service to the widgets, which results in better performance and cleaner code.
 
 ## Basic example
+
+A basic example of a counter service that increments the count and streams the count to the widget
+
 ```dart
-class CountService with StreamMixin<int> {
+class Counter with StreamMixin<int> {
   increment() {
-    update(lastUpdate ?? 0 + 1);
+    update((lastUpdate ?? 0) + 1);
   }
 }
 
-/// You can either create a global instance of CountService or create a
-/// singleton like class by adding the following in CountService class
+/// You can either create a global instance of Counter or create a
+/// singleton (recommented) like class by adding the following in Counter class
 /// ```dart
-///   CountService._();
-///   static CountService instance = CountService._();
+///   Counter._();
+///   static Counter instance = Counter._();
 /// ```
-final countService = CountService();
+final counter = Counter();
 
 anywhereInTheApp() {
-  countService.increment();
+  counter.increment();
 }
 
 Widget someWidget() {
   return StreamBuilder<int>(
-    stream: countService.onChange,
+    stream: counter.onChange,
     builder: (cxt, snap) => Text((snap.data ?? 0).toString()),
   );
 }
