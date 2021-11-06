@@ -1,52 +1,50 @@
 # stream_mixin
 
-A simple mixin for adding a stream behaviour to any class object.
+Data management using stream to avoid use of State/setState/StatefulWidget, boosting the performance and code separation.
 
-## Breaking change in 2.0.0
-Migrated to null safety
-## Intention
+---
+## Breaking change in 2.0.0 and 3.0.0. Check the [changelog](/changelog).
 
-The intention for this package is, instead of using state, we can use this package for streaming data from our controller/adapter/service to the widgets, which will result in better performance and cleaner code.
+---
+## The Intention
 
-## Getting Started
-To subscribe a class instance, create the class with `StreamMixin`
+The intention for this package is, instead of using state, use this package for streaming data from the controller/adapter/service to the widgets, which results in better performance and cleaner code.
 
-### Create a service class
-
+## Basic example
 ```dart
-class AppTagService with StreamMixin<String> {
-  AppTagService._();
-  static final AppTagService instance = AppTagService._();
-}
-```
-
-### Subscribe to change of the tag service
-
-```dart
-class CurrentTag extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<String>(
-      builder: (context, snap) => Text(snap.data ?? 'No tag selected yet.'),
-      stream: AppTagService.instance.onChange, //⭐
-    );
+class CountService with StreamMixin<int> {
+  increment() {
+    update(lastUpdate ?? 0 + 1);
   }
 }
-```
 
-### Change current tag
+/// You can either create a global instance of CountService or create a
+/// singleton like class by adding the following in CountService class
+/// ```dart
+///   CountService._();
+///   static CountService instance = CountService._();
+/// ```
+final countService = CountService();
 
-Note, tag can be changed from any place in the app because it does not need context or state.
+anywhereInTheApp() {
+  countService.increment();
+}
 
-```dart
-someFunction() {
-  AppTagService.instance.update(element: 'COVID-19');
+Widget someWidget() {
+  return StreamBuilder<int>(
+    stream: countService.onChange,
+    builder: (cxt, snap) => Text((snap.data ?? 0).toString()),
+  );
 }
 ```
 
-## Check example folder for more examples
+## [Check all examples](/example)
 
-### PS 
-- PRs are welcome
-- Please raise issues on https://github.com/arnold-parge/stream_mixin/issues.
-- Open for suggestions ❤️
+## Contribute ❤️
+There are couple of ways in which you can contribute.
+- Propose any feature, enhancement
+- Report a bug
+- Fix a bug
+- Participate in a discussion and help in decision making
+- Write and improve some documentation. Documentation is super critical and - its importance cannot be overstated!
+- Send in a Pull Request 🙂

@@ -4,23 +4,29 @@ import 'package:stream_mixin/stream_mixin.dart';
 
 // Example 1
 
-class AppTagService with StreamMixin<String> {
-  AppTagService._();
-  static final AppTagService instance = AppTagService._();
-}
-
-class CurrentTag extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<String>(
-      builder: (context, snap) => Text(snap.data ?? 'No tag selected yet.'),
-      stream: AppTagService.instance.onChange, //⭐
-    );
+class CountService with StreamMixin<int> {
+  increment() {
+    update(lastUpdate ?? 0 + 1);
   }
 }
 
-someFunction() {
-  AppTagService.instance.update(element: 'COVID-19');
+/// You can either create a global instance of CountService or create a
+/// singleton like class by adding the following in CountService class
+/// ```dart
+///   CountService._();
+///   static CountService instance = CountService._();
+/// ```
+final countService = CountService();
+
+anywhereInTheApp() {
+  countService.increment();
+}
+
+Widget someWidget() {
+  return StreamBuilder<int>(
+    stream: countService.onChange,
+    builder: (cxt, snap) => Text((snap.data ?? 0).toString()),
+  );
 }
 
 // Example 2

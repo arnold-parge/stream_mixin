@@ -25,7 +25,7 @@ void main() {
       emitsInOrder(stringsToEmit),
     );
 
-    stringsToEmit.forEach((str) => nameService.update(element: str));
+    stringsToEmit.forEach((str) => nameService.update(str));
   });
 
   test('List of models', () async {

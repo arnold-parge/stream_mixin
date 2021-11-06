@@ -15,7 +15,7 @@ mixin StreamMixin<T> {
   }
 
   /// Pushes data in the [Stream]
-  void update({required T element}) {
+  void update(T element) {
     this.lastUpdate = element;
     _controller.add(element);
   }
