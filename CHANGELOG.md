@@ -1,3 +1,6 @@
+## [3.0.3] - 6 Nov 2021
+- Updated README
+
 ## [3.0.2] - 6 Nov 2021
 - Updated README
 - Updated example

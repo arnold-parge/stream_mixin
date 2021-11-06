@@ -1,11 +1,11 @@
 # stream_mixin
-Data management using stream to avoid use of State/setState/StatefulWidget, boosting the performance and code separation.
+State management using stream to avoid use of flutter's State/setState/StatefulWidget, boosting the performance and code separation.
 
 ## Breaking change in 2.0.0 and 3.0.0. Check the changelog.
 
 ## The Intention
 
-The intention for this package is, instead of using state, use this package for streaming data from the controller/adapter/service to the widgets, which results in better performance and cleaner code.
+The intention for this package is to use stream instead of flutter's state for streaming data from the controller/adapter/service class to the widgets, which results in better performance and cleaner code.
 
 ## Basic example
 
