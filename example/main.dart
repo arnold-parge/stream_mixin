@@ -50,7 +50,7 @@ class TodoService extends StoreService<TodoModel> {
 
   void toggleStatus(TodoModel todo) {
     todo.completed = !todo.completed;
-    store.updateItem(todo);
+    store.update(todo);
   }
 }
 
