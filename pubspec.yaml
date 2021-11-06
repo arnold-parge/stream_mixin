@@ -1,6 +1,6 @@
 name: stream_mixin
-description: Data management using stream to avoid use of State/setState/StatefulWidget, boosting the performance and code separation.
-version: 3.0.3
+description: State management using stream to avoid use of flutter's State/setState/StatefulWidget, boosting the performance and code separation.
+version: 3.0.4
 homepage: https://github.com/arnold-parge/stream_mixin
 
 environment:

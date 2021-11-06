@@ -1,4 +1,7 @@
-## [3.0.3] - 6 Nov 2021
+## [3.0.4] - 7 Nov 2021
+- Updated package description
+
+# [3.0.3] - 6 Nov 2021
 - Updated README
 
 ## [3.0.2] - 6 Nov 2021
