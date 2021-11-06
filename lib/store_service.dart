@@ -13,25 +13,26 @@ enum Operation {
 }
 
 /// Tells [StoreService] what [Operation] to perform and on which [item] to perform the operation
-class AppStreamElement<T> {
+class StreamElement<T> {
   final T item;
   final Operation operation;
 
-  AppStreamElement({required this.item, required this.operation});
+  StreamElement({required this.item, required this.operation});
 }
 
 /// A model that should be extended by models that will use in [StoreService]
-abstract class BasicModel {
-  int id;
-  BasicModel({required this.id});
+abstract class BaseModel {
+  String id;
+  BaseModel({required this.id});
 }
 
-/// [StoreService] will let you create a service which will handle most of the operations on the model out of the box,
-/// like [idExist], [onChange], [update()], [updateAll()], [values]
-abstract class StoreService<T extends BasicModel>
-    with StreamMixin<AppStreamElement<T>> {
-  /// The main in memory store which will store your model extended by [BasicModel]
-  Map<int, T> _store = {};
+/// [StoreService] will let you create a service which will handle most of the
+/// operations on the model out of the box,
+/// like [idExist], [onChange], [update], [updateAll], [values]
+abstract class StoreService<T extends BaseModel>
+    with StreamMixin<StreamElement<T>> {
+  /// The main in-memory store which will store your model extended by [BaseModel]
+  Map<String, T> _store = {};
 
   /// Adds an item in the store
   void _add(T item) {
@@ -53,30 +54,64 @@ abstract class StoreService<T extends BasicModel>
     return _store.containsKey(id);
   }
 
+  /// Finds and returns the item by [id]
+  /// If the item is not found, null will be returned
+  T? getById(String id) {
+    return _store[id];
+  }
+
   /// Updates all records in the store
-  void updateAll(T Function(int, T) update) {
+  void updateAll(T Function(String, T) update) {
     _store.updateAll(update);
 
-    // Find a better way to force emit event without element
+    // TODO: Find a better way to force emit event without element
     // super.update(element: null);
   }
 
-  /// Updates a single record in the store
-  ///
-  /// The data is handdled as per the [AppStreamElement] passed
-  @override
-  void update({required AppStreamElement<T> element}) {
-    switch (element.operation) {
-      case Operation.Add:
-      case Operation.Update:
-        _add(element.item);
-        break;
-      case Operation.Delete:
-        _delete(element.item);
-        break;
-      default:
-        break;
+  /// Adds an [item] to the store.
+  void addItem(T item) {
+    _add(item);
+    super.update(
+      element: StreamElement(
+        item: item,
+        operation: Operation.Add,
+      ),
+    );
+  }
+
+  /// Updates an [item] in the store.
+  void updateItem(T item) {
+    _add(item);
+    super.update(
+      element: StreamElement(
+        item: item,
+        operation: Operation.Update,
+      ),
+    );
+  }
+
+  /// Deletes an [item] from the store.
+  void deleteItem(T item) {
+    _delete(item);
+    super.update(
+      element: StreamElement(
+        item: item,
+        operation: Operation.Delete,
+      ),
+    );
+  }
+
+  /// Deletes an [item] from the store by the given id.
+  void deleteItemById(String id) {
+    var item = getById(id);
+    if (item != null) {
+      _delete(item);
+      super.update(
+        element: StreamElement(
+          item: item,
+          operation: Operation.Delete,
+        ),
+      );
     }
-    super.update(element: element);
   }
 }

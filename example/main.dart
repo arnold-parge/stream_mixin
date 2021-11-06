@@ -25,28 +25,20 @@ someFunction() {
 
 // Example 2
 
-class TodoModel extends BasicModel {
+class TodoModel extends BaseModel {
   String title;
   bool completed;
 
   TodoModel({
-    int? id,
+    required String id,
     required this.title,
     this.completed: false,
-  }) : super(id: id ?? 0) {
-    this.id = id ?? DateTime.now().millisecondsSinceEpoch;
-  }
+  }) : super(id: id);
 }
 
 class TodoService extends StoreService<TodoModel> {
   TodoService._();
   static TodoService store = TodoService._();
-
-  List<TodoModel> get accending {
-    var todos = this.values;
-    todos.sort((a, b) => a.id - b.id);
-    return todos;
-  }
 
   List<TodoModel> get completed {
     return this.values.where((todo) => todo.completed).toList();
@@ -58,9 +50,7 @@ class TodoService extends StoreService<TodoModel> {
 
   void toggleStatus(TodoModel todo) {
     todo.completed = !todo.completed;
-    TodoService.store.update(
-      element: AppStreamElement(item: todo, operation: Operation.Update),
-    );
+    store.updateItem(todo);
   }
 }
 
@@ -69,7 +59,7 @@ class TodoListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       builder: (context, snap) => ListView(
-        children: TodoService.store.accending.map(_buildListTile).toList(),
+        children: TodoService.store.values.map(_buildListTile).toList(),
       ),
       stream: TodoService.store.onChange,
     );
